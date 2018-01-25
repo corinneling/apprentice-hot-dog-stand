@@ -7,40 +7,46 @@ class HotDog
     @condiments = []
   end
 
-  $error_message = "\nWe don't offer that here. \nPlease enter a valid option.\n----------------------------\n"
-  $prompt = '--> '
-
   def choose_type
     puts 'Inside HotDog#choose_type'
-
-    # variables
-    dog_type = %w[Polish Beef Jalepano Tofu]
-    dog_confirmation = "Thank you for choosing a hot dog type!\nNow let\'s figure out what kind of bun you want."
 
     # Asks the user a question
     puts "\nWhat type of hot dog would you like?\n-----------------------------------"
 
     # prints out each item of the array to the command line
-    dog_type.each_with_index do |dog, index|
-      puts "[ #{index} ] #{dog}"
+    ["Polish", "Beef", "Jalepano", "Tofu", "Mystery Meat"].each_with_index do |items, index|
+      puts "[ #{index} ] #{items}"
     end
 
-    # ask the user for input and turn input into an integer
-    print $prompt
-    @type = $stdin.gets.chomp.to_i
+    # ask the user for input
+    print "-->"
+    user_input_dog = gets.chomp.to_i
 
-    # checks to see whether we can move onto choosing a bun
-    if @type.between?(1, 4)
-      puts dog_confirmation
+    # returns an error if input is a string
+    if user_input_dog.to_s
+      puts "Please choose a number."
+    end
+
+    # validates and stores item in @type
+    case user_input_dog
+    when 0
+      @type = "Polish"
+    when 1
+      @type = "Beef"
+    when 2
+      @type = "Jalepano"
+    when 3
+      @type = "Tofu"
+    when 4
+      @type = "Mystery Meat"
     else
-      while @type > 4
-        puts $error_message
-        print $prompt
-        @type = gets.chomp.to_i
+      # if input is >= 5, returns an error and brings user back to prompt
+      while user_input_dog >= 5
+        puts "\nWe don't offer that here. \nPlease enter a valid option.\n----------------------------\n"
+        print "--> "
+        user_input_dog = gets.chomp.to_i
       end
     end
-
-    @type
   end
 
   def choose_bun
