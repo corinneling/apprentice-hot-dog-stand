@@ -1,19 +1,24 @@
 require_relative './hot_dog.rb'
 
 class Order
-  attr_reader :order
+  attr_reader :hot_dogs
 
   def initialize
-    @order = {}
+    # Extendable to order multiple hot dogs
+    @hot_dogs = []
   end
 
-  def place_order
-    puts "Inside Order#place_order"
-    # choose_hotdog
-    # choose_bun
-    # choose_condiments
+  def place_order!
+    hot_dog = HotDog.new
+    hot_dog.choose_type
+    hot_dog.choose_bun
+    hot_dog.choose_condiments
 
-    # @order # returns order
+    @hot_dogs << hot_dog
   end
 
+  def to_s(hot_dog)
+    puts "Inside Order#to_s"
+    p hot_dog
+  end
 end

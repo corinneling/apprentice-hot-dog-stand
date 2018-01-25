@@ -5,4 +5,4 @@ menu = MenuController.new
 system "clear"
 puts "Welcome to Hot Diggity Dog!"
 
-menu.main_menu
+menu.show_menu
