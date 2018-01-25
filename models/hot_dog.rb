@@ -23,8 +23,8 @@ class HotDog
     user_input_dog = gets.chomp.to_i
 
     # returns an error if input is a string
-    if user_input_dog.to_s
-      puts "Please choose a number."
+    if user_input_dog.is_a? String
+      puts "That's some shenanigans. Please, choose a number."
     end
 
     # validates and stores item in @type
