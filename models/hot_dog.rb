@@ -1,3 +1,5 @@
+require_relative '../helpers.rb'
+
 class HotDog
   attr_reader :type, :bun, :condiments
 
@@ -11,7 +13,8 @@ class HotDog
     puts 'Inside HotDog#choose_type'
 
     # Asks the user a question
-    puts "\nWhat type of hot dog would you like?\n-----------------------------------"
+    puts "\nWhat type of hot dog would you like?"
+    puts PROMPT
 
     # prints out each item of the array to the command line
     ["Polish", "Beef", "Jalepano", "Tofu", "Mystery Meat"].each_with_index do |items, index|
@@ -40,18 +43,22 @@ class HotDog
     when 4
       @type = "Mystery Meat"
     else
-      # if input is >= 5, returns an error and brings user back to prompt
-      while user_input_dog >= 5
-        puts "\nWe don't offer that here. \nPlease enter a valid option.\n----------------------------\n"
-        print "--> "
-        user_input_dog = gets.chomp.to_i
+      while @type > 4
+        puts OPTION_ERROR
+        puts PROMPT
+        @type = gets.chomp.to_i
       end
     end
   end
 
   def choose_bun
-    puts 'Inside HotDog#choose_bun'
-    @bun = 'wheat'
+    puts "Inside HotDog#choose_bun"
+
+    buns = ["Hold the bun.", "Whole wheat", "Gluten-free", "Tortilla"]
+    print_choices('bun', buns)
+
+    bun_index = gets.chomp.to_i
+    @bun = buns[bun_index] unless bun_index.zero?
   end
 
   def condiment_choices(question, answers)
