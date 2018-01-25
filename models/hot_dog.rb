@@ -57,29 +57,28 @@ class HotDog
     answers.each_with_index do |ans, index|
       puts "[ #{index} ] #{ans}"                                                    # outputs avaliable condiment options
     end
-    puts '[ ' + answers.length.to_s + ' ] None / No more'                          # outputs 'none' option
   end
 
   def choose_condiments
-    options = %w[ketchup mustard relish horseradish onions sauerkraut]             # condiment options
-    condiment_choices(:intro, options)                                             # run 'condiments_choices' method
+    options = %w[none ketchup mustard relish horseradish onions sauerkraut]         # condiment options
+    condiment_choices(:intro, options)                                              # run 'condiments_choices' method
 
     loop do                                                                         # loop
       print "\n --> "
       user_input = Integer($stdin.gets.chomp)                                       # take user's input and convert to integer
 
-      if user_input.between?(0, options.length - 1)                                # if user's input is valid
-        pulled_choice = options.fetch(user_input)                                  # store user's condiment
+      if user_input.between?(1, options.length - 1)                                 # if user's input is valid
+        pulled_choice = options.fetch(user_input)                                   # store user's condiment
         puts "\nAdding " + pulled_choice + "..."                                    # let user know condiment is being added
-        options.delete_at(user_input)                                              # remove condiment form avaliable options
+        options.delete_at(user_input)                                               # remove condiment form avaliable options
         @condiments.push(pulled_choice)                                             # push user's condiment to 'choices' array
-      elsif user_input === options.length                                          # if user's input is 'none / no more'
+      elsif user_input === 0                                                        # if user's input is 'none / no more'
         break                                                                       # break the loop
       else                                                                          # else...
         puts "Please enter a valid option\n-----------------------------------"     # tell user to enter a valid option
       end                                                                           # end
 
-      options.any? ? condiment_choices(:more, options) : break                    # if any condiments in 'options' array, run 'condiment_choices' method : else break loop
+      options.any? ? condiment_choices(:more, options) : break                      # if any condiments in 'options' array, run 'condiment_choices' method : else break loop
     end
 
     puts 'Adding your condiments...'
