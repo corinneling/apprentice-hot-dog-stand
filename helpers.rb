@@ -1,13 +1,49 @@
-PROMPT = "--> "
-DIVIDER = "#{'-' * 80}"
-OPTION_ERROR = "\nWe don't offer that here. \nPlease enter a valid option."
+require_relative './constants'
 
-def print_choices(item, choices) 
-  puts "What type of #{item} would you like?"
-  puts DIVIDER
-
-  choices.each_with_index do |choice, index|
-    puts "[ #{index} ] #{choice}" 
-  end
+def clear
+  system "clear"
 end
 
+
+def print_options(item, options) 
+  if item == :menu
+    puts "Would you like to order a hot dog today?"
+  else
+    puts "What type of #{item} would you like?"
+  end
+  
+  puts DIVIDER
+  
+  options.each_with_index do |option, index|
+    puts "[ #{index} ] #{option}" 
+  end
+  
+  print PROMPT
+end
+
+def print_error(error_type)
+  when :option
+    puts OPTION_ERROR
+  when :type
+    puts TPYE_ERROR
+  else
+    puts "Unknown error"
+  end
+    
+  print PROMPT
+end
+
+def get_index(options)
+  begin
+    index = Integer(gets.chomp)
+    # raise RangeError unless options.include?(options[index])
+  rescue ArgumentError, TypeError
+    print_error(:type)
+    get_index(options)
+  # rescue RangeError
+    # print_error(:option)
+    # get_index(options)
+  end
+
+  # index
+end
