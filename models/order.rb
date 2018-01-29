@@ -17,13 +17,29 @@ class Order
 
     print_options_menu(:bun_menu, BUN_OPTIONS)
     hot_dog.choose_bun(get_index(BUN_OPTIONS))
-    
+
     hot_dog.choose_condiments
 
     @hot_dogs << hot_dog
   end
 
+  def bun_grammar_check(bun)
+    case
+    when bun == nil then "no bun"
+    when bun != nil then "a #{bun} bun"
+    end
+  end
+
+  def condiment_grammar_check(condiments)
+    case
+    when condiments.length == 1 then condiments[0]
+    when condiments.length == 2 then condiments.first + " and " + condiments.last
+    when condiments.length > 2 then condiments[0..-2].join(", ") + ", and " + condiments.last
+    end
+  end
+
   def to_s(hot_dog)
-    p hot_dog
+    puts
+    p "Your order of a #{hot_dog.type} hotdog on #{bun_grammar_check(hot_dog.bun)} along with #{condiment_grammar_check(hot_dog.condiments)} is coming up!"
   end
 end
