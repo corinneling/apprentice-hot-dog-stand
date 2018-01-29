@@ -11,7 +11,7 @@ class MenuController
     puts "#show_menu"
     puts
 
-    print_options(:menu, MENU_OPTIONS)
+    print_options(MENU_OPTIONS)
     input = get_index(MENU_OPTIONS)
 
     until input.between?(0, MENU_OPTIONS.length)

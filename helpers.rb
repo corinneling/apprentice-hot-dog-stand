@@ -4,19 +4,27 @@ def clear
   system "clear"
 end
 
+def print_option_menu(menu_item, options)
+  print_question(menu_item)
+  print_options(options)
+end
 
-def print_options(item, options) 
-  if item == :menu
+def print_options(options) 
+  options.each_with_index do |option, index|
+  puts "[ #{index} ] #{option}" 
+end
+
+
+def print_question(menu_item)
+  if menu_item == :menu
     puts "Would you like to order a hot dog today?"
   else
-    puts "What #{item} would you like?"
+    puts "What #{menu_item} would you like?"
   end
   
   puts DIVIDER
-  
-  options.each_with_index do |option, index|
-    puts "[ #{index} ] #{option}" 
-  end
+end
+
 
   print_prompt
 end
@@ -24,7 +32,6 @@ end
 def print_prompt
   print PROMPT
 end
-
 
 def print_error(error_type)
   case error_type

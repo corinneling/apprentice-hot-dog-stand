@@ -15,7 +15,7 @@ class HotDog
     puts "#choose_type"
     puts
 
-    print_options('hot dog', HOT_DOG_OPTIONS)
+    print_options(HOT_DOG_OPTIONS)
     @type = HOT_DOG_OPTIONS[get_index(HOT_DOG_OPTIONS)] 
   end
 
@@ -24,7 +24,7 @@ class HotDog
     puts "#choose_bun"
     puts
 
-    print_options('bun', BUN_OPTIONS)
+    print_options(BUN_OPTIONS)
     index = get_index(HOT_DOG_OPTIONS)
     @bun = BUN_OPTIONS[index] unless index.zero?
   end
@@ -35,21 +35,23 @@ class HotDog
     puts
     
     condiment_options = CONDIMENT_OPTIONS
-    print_options('condiments', condiment_options)
+    print_option_menu(:condiments, condiment_options)
     
-    until condiment_options.length < 3
+    until condiment_options.length < 2
       index = get_index(condiment_options)
       
-      if index.zero?
-        break
-      elsif index.between?(1, condiment_options.length - 1)
-        print_options('condiments', condiment_options)
-        pulled_choice = condiment_options.fetch(index)
+      break if index.zero?
+      
+      if index.between?(1, condiment_options.length)
+        pulled_choice = condiment_options[index]
         condiment_options.delete_at(index)
+        
+        print_option_menu(:condiments, condiment_options)
+
         @condiments.push(pulled_choice)
       else
         print_error(:option)
-        print_prompt      
+        print_prompt     
       end
     end
   end
