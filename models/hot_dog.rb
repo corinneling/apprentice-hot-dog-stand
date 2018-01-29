@@ -21,7 +21,7 @@ class HotDog
   def choose_condiments
     condiment_options = CONDIMENT_OPTIONS
     print_options_menu(:condiments, condiment_options)
-    
+
     until condiment_options.length < 2
       index = get_index(condiment_options)
       break if index.zero?
@@ -35,7 +35,7 @@ class HotDog
         @condiments.push(pulled_choice)
       else
         print_error(:option)
-        print_prompt
+        print_prompt     
       end
     end
   end

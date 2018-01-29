@@ -7,15 +7,7 @@ class MenuController
   end
 
   def show_menu
-<<<<<<< HEAD
-    puts
-    puts "#show_menu"
-    puts
-
-    print_options(MENU_OPTIONS)
-=======
     print_options_menu(:main_menu, MENU_OPTIONS)
->>>>>>> refactor: print methods
     input = get_index(MENU_OPTIONS)
 
     until input.between?(0, MENU_OPTIONS.length)
