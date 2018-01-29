@@ -18,7 +18,7 @@ class Order
   end
 
   def to_s(hot_dog)
-    puts "Inside Order#to_s"
+    puts "#to_s"
     p hot_dog
   end
 end

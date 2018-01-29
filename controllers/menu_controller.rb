@@ -14,7 +14,7 @@ class MenuController
     print_options(:menu, MENU_OPTIONS)
     input = get_index(MENU_OPTIONS)
 
-    until input.between?(0, 1)
+    until input.between?(0, MENU_OPTIONS.length)
       print_error(:option)
       input = get_index(MENU_OPTIONS)
     end

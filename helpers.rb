@@ -9,7 +9,7 @@ def print_options(item, options)
   if item == :menu
     puts "Would you like to order a hot dog today?"
   else
-    puts "What type of #{item} would you like?"
+    puts "What #{item} would you like?"
   end
   
   puts DIVIDER
@@ -17,11 +17,17 @@ def print_options(item, options)
   options.each_with_index do |option, index|
     puts "[ #{index} ] #{option}" 
   end
-  
+
+  print_prompt
+end
+
+def print_prompt
   print PROMPT
 end
 
+
 def print_error(error_type)
+  case error_type
   when :option
     puts OPTION_ERROR
   when :type
@@ -29,8 +35,6 @@ def print_error(error_type)
   else
     puts "Unknown error"
   end
-    
-  print PROMPT
 end
 
 def get_index(options)
