@@ -12,7 +12,7 @@ class Order
   def place_order!
     hot_dog = HotDog.new
 
-    print_options_menu(:type_menu, TYPE_OPTIONS)
+    print_options_menu(:type_menu, HOT_DOG_OPTIONS)
     hot_dog.choose_type(get_index(CONDIMENT_OPTIONS))
 
     print_options_menu(:bun_menu, BUN_OPTIONS)

@@ -11,7 +11,7 @@ class HotDog
   end
 
   def choose_type(index)
-    @type = TYPE_OPTIONS[index]
+    @type = HOT_DOG_OPTIONS[index]
   end
 
   def choose_bun(index)
