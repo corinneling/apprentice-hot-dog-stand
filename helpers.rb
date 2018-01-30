@@ -4,8 +4,8 @@ def clear
   system "clear"
 end
 
-def print_options_menu(menu_item, options)
-  print_question(menu_item)
+def print_options_menu(question_lambda, options)
+  print_question(question_lambda)
   print_options(options)
 end
 
@@ -17,13 +17,10 @@ def print_options(options)
   print_prompt
 end
 
-def print_question(menu_item)
-  if menu_item == :main_menu
-    puts "Would you like to order a hot dog today?"
-  else
-    puts "What #{menu_item} would you like?"
-  end
-
+def print_question(question_lambda)
+  puts
+  question_lambda.call
+  
   puts DIVIDER
 end
 
@@ -36,10 +33,12 @@ def print_error(error_type)
   when :option
     puts OPTION_ERROR
   when :type
-    puts TPYE_ERROR
+    puts TYPE_ERROR
   else
     puts "Unknown error"
   end
+
+  print_prompt
 end
 
 def get_index(options)
