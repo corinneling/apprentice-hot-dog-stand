@@ -1,24 +1,25 @@
 require_relative '../helpers'
-require_relative '../constants'
+require_relative 'options'
 
-class HotDog
-  attr_accessor :type, :bun, :condiments
+class HotDog < Options
+  attr_reader :meat, :bun, :condiments, :options
 
   def initialize
-    @type = nil
+    @options = Options.new
+    @meat = nil 
     @bun = nil
     @condiments = []
   end
 
-  def choose_type(index)
-    @type = HOT_DOG_OPTIONS[index]
+  def meat=(index)
+    @meat = options.meats[index] 
   end
 
-  def choose_bun(index)
-    @bun = BUN_OPTIONS[index] unless index.zero?
+  def bun=(index)
+    @bun = options.buns[index]
   end
 
-  def choose_condiment(index)
-    @condiments << CONDIMENT_OPTIONS[index]
+  def condiments=(index)
+    @condiments << options.condiments[index]
   end
 end

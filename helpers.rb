@@ -42,14 +42,18 @@ def print_error(error_type)
   print_prompt
 end
 
-def get_index(options)
-  begin
-    index = Integer(gets.chomp)
-  rescue ArgumentError, TypeError
-    print_error(:type)
-    get_index(options)
-  end
-end
+# def get_index(options)
+  # index = Integer(gets.chomp)
+  # puts "INDEX: #{index} #{index.class}"
+  # index
+  # begin
+  #   index = Integer(gets.chomp)
+  #   index
+  # rescue ArgumentError, TypeError
+  #   print_error(:type)
+  #   get_index(options)
+  # end
+# end
 
 def void?(i)
   i.nil? || i.zero?
