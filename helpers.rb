@@ -20,7 +20,7 @@ end
 def print_question(question_lambda)
   puts
   question_lambda.call
-  
+
   puts DIVIDER
 end
 
@@ -47,5 +47,20 @@ def get_index(options)
   rescue ArgumentError, TypeError
     print_error(:type)
     get_index(options)
+  end
+end
+
+def bun_grammar_check(bun)
+  case
+  when bun == nil then "no bun"
+  when bun != nil then "a #{bun} bun"
+  end
+end
+
+def condiment_grammar_check(condiments)
+  case
+  when condiments.length == 1 then "with" + condiments[0]
+  when condiments.length == 2 then "along with #{condiments.first} and #{condiments.last} "
+  when condiments.length > 2 then "along with #{condiments[0..-2].join(", ")}, and #{condiments.last} "
   end
 end

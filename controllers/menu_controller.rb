@@ -28,25 +28,25 @@ class MenuController
 
   def create_hot_dog
     condiment_options = CONDIMENT_OPTIONS
-    
+
     # Hot dog options
     type_question = -> { puts "What kind of hot dog would you like?" }
     print_options_menu(type_question, HOT_DOG_OPTIONS)
     @hot_dog.choose_type(get_index(HOT_DOG_OPTIONS))
-    
+
     # Bun options
     bun_question = -> { puts "What kind of bun would you like?" }
-    print_options_menu(bun_question, BUN_OPTIONS) 
+    print_options_menu(bun_question, BUN_OPTIONS)
     @hot_dog.choose_bun(get_index(BUN_OPTIONS))
-    
+
     # Condiment options
     condiments_question = -> { puts "What would you like on your hot dog?" }
     print_options_menu(condiments_question, @condiment_options)
-    
+
     until @condiment_options.length < 2
       index = get_index(@condiments_options)
       break if index.nil? || index.zero?
-      
+
       if index.between?(1, CONDIMENT_OPTIONS.length)
         @hot_dog.choose_condiment(index)
         @condiment_options[index] = nil
@@ -63,9 +63,6 @@ class MenuController
   end
 
   def print_order
-    p @hot_dog
-    # @order.hot_dogs.each do |hot_dog|
-      # @order.to_s(hot_dog)
-    # end
+    p "Your order of a #{@hot_dog.type} hotdog on #{bun_grammar_check(@hot_dog.bun)} #{condiment_grammar_check(@hot_dog.condiments)}is coming up!"
   end
 end
