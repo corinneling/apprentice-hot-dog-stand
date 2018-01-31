@@ -5,6 +5,7 @@ def clear
 end
 
 def print_options_menu(question_lambda, options)
+  clear
   print_question(question_lambda)
   print_options(options)
 end
@@ -48,6 +49,14 @@ def get_index(options)
     print_error(:type)
     get_index(options)
   end
+end
+
+def void?(i)
+  i.nil? || i.zero?
+end
+
+def choice?(i)
+  i.between?(1, CONDIMENT_OPTIONS.length)
 end
 
 def bun_grammar_check(bun)

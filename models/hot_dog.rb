@@ -13,11 +13,11 @@ class HotDog
   def choose_type(index)
     @type = HOT_DOG_OPTIONS[index]
   end
-  
+
   def choose_bun(index)
     @bun = BUN_OPTIONS[index] unless index.zero?
   end
-  
+
   def choose_condiment(index)
     @condiments << CONDIMENT_OPTIONS[index]
   end

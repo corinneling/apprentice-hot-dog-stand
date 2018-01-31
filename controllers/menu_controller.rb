@@ -45,17 +45,13 @@ class MenuController
 
     until @condiment_options.length < 2
       index = get_index(@condiments_options)
-      break if index.nil? || index.zero?
+      break if void?(index)
 
-      if index.between?(1, CONDIMENT_OPTIONS.length)
-        @hot_dog.choose_condiment(index)
-        @condiment_options[index] = nil
-        clear
-        print_question(condiments_question)
-        print_options(@condiment_options)
+      if choice?(index)
+        @hot_dog.choose_condiment(index) && @condiment_options[index] = nil
+        print_options_menu(condiments_question, @condiment_options)
       else
-        print_error(:option)
-        next
+        print_error(:option) && next
       end
     end
 
