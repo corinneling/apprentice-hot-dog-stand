@@ -59,7 +59,7 @@ end
 
 def condiment_grammar_check(condiments)
   case
-  when condiments.length == 1 then "with" + condiments[0]
+  when condiments.length == 1 then "with #{condiments[0]} "
   when condiments.length == 2 then "along with #{condiments.first} and #{condiments.last} "
   when condiments.length > 2 then "along with #{condiments[0..-2].join(", ")}, and #{condiments.last} "
   end
