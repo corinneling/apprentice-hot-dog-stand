@@ -1,21 +1,23 @@
 require_relative '../models/hot_dog'
 require_relative '../helpers'
+require_relative '../models/options'
 
-class MenuController
-  attr_reader :hot_dog
+class MenuController < Options
+  attr_reader :hot_dog, :options
 
   def initialize
+    @options = Options.new
     @hot_dog = HotDog.new
   end
 
   def show_menu
     menu_question = -> { puts "Would you like to order a hot dog today?" }
-    print_options_menu(menu_question, MENU_OPTIONS)
-    input = get_index
+    print_options_menu(menu_question, options.menu)
+    input = get_index(options.menu)
 
-    until input.between?(0, MENU_OPTIONS.length)
+    until input.between?(0, options.menu.length)
       print_error(:option)
-      input = get_index
+      input = get_index(options.menu)
     end
 
     if input == 1
@@ -28,34 +30,34 @@ class MenuController
   end
 
   def create_hot_dog
-    condiment_options = CONDIMENT_OPTIONS
-
     # Hot dog options
-    type_question = -> { puts "What kind of hot dog would you like?" }
-    print_options_menu(type_question, HOT_DOG_OPTIONS)
-    
-    hot_dog.meat = get_index
+    type_question = -> { puts "What kind of meat would you like?" }
+    print_options_menu(type_question, options.meats)
+
+    index = get_index(options.meats)
+    hot_dog.meat = options.select_meat_at(index)
 
     # Bun options
     bun_question = -> { puts "What kind of bun would you like?" }
-    print_options_menu(bun_question, BUN_OPTIONS)
+    print_options_menu(bun_question, options.buns)
 
-    hot_dog.bun = get_index
+    index = get_index(options.buns)
+    hot_dog.bun = options.select_bun_at(index)
 
     # Condiment options
-    condiments_question = -> { puts "What would you like on your hot dog?" }
-    print_options_menu(condiments_question, condiment_options)
-
-    until condiment_options.length < 2
-      index = get_index
+    condiments_question = -> { puts "What kind of condiments would you like?" }
+    print_options_menu(condiments_question, options.condiments)
+    
+    until options.condiments.length < 2
+      index = get_index(options.condiments)
       break if void?(index)
 
-      if choice?(index)
-        # FIX change API
-        hot_dog.condiments = get_index
-        print_options_menu(condiments_question, condiment_options)
+      if valid_index?(index, 1, options.condiments.length)
+        hot_dog.condiments << options.select_condiment_at(index)
+        clear
+        print_options_menu(condiments_question, options.condiments)
       else
-        print_error(:option) && next
+        print_error(:option) &&  next
       end
     end
 
@@ -63,12 +65,6 @@ class MenuController
   end
 
   def print_order
-    p "Your order of a #{hot_dog.meat} hotdog on #{bun_grammar_check(hot_dog.bun)} #{condiment_grammar_check(hot_dog.condiments)}is coming up!"
-  end
-
-  def get_index
-    index = gets.chomp.to_i  
-    p index
-    index
+    puts "Your order of a #{hot_dog.meat} hot dog on #{bun_grammar_check(hot_dog.bun)} #{condiment_grammar_check(hot_dog.condiments)}is coming up!"
   end
 end
