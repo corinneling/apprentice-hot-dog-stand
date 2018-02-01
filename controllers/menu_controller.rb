@@ -15,8 +15,8 @@ class MenuController < Options
     print_options_menu(menu_question, options.menu)
     input = get_index(options.menu)
 
-    until input.between?(0, options.menu.length)
-      print_error(:option)
+    until input.between?(0, options.menu.length - 1)
+      Helpers.print_error(:option)
       input = get_index(options.menu)
     end
 
@@ -57,7 +57,7 @@ class MenuController < Options
         Helpers.clear
         print_options_menu(condiments_question, options.condiments)
       else
-        print_error(:option) &&  next
+        Helpers.print_error(:option) &&  next
       end
     end
 
@@ -95,7 +95,7 @@ class MenuController < Options
     begin
       index = Integer(gets.chomp)
     rescue ArgumentError, TypeError
-      print_error(:type)
+      Helpers.print_error(:type)
       get_index(options)
     end
   end
