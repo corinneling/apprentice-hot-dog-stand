@@ -3,7 +3,7 @@ require_relative './helpers'
 
 menu = MenuController.new
 
-clear
+Helpers.clear
 puts "Welcome to Hot Diggity Dog!"
 
 menu.show_menu
