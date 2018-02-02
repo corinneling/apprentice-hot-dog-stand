@@ -24,9 +24,13 @@ class MenuController < Options
       create_hot_dog
       print_order
     else
+      quit_menu
+    end
+  end
+
+  def quit_menu
       puts "Goodbye, hope to see you again!"
       exit(0)
-    end
   end
 
   def create_hot_dog
