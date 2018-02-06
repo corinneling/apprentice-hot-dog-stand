@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require_relative '../models/hot_dog'
+require './lib/models/hot_dog'
 
 class HotDogTest < Minitest::Test
   def setup

@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require './controllers/menu_controller'
+require './lib/controllers/menu_controller'
 
 class TestedMenuController < MenuController
 

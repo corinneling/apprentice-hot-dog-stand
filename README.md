@@ -1,5 +1,10 @@
 # Hot Dog Stand OOP Project
 
+## Setup
+
+* Run tests: `bundle exec guard`
+* Start program: `rake start`
+
 ## Project Guidelines
 Write a program which presents a questionnaire to the user asking them the particulars of a hot dog order. The questionnaire should gather the following data points.
 

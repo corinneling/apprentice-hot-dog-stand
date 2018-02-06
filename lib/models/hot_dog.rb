@@ -6,10 +6,4 @@ class HotDog
     @bun = nil
     @condiments = []
   end
-
-
-  def condiments=(condiment)
-    # FIX: better way to update condiments
-    @condiments << condiment
-  end
 end
