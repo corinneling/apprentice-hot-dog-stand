@@ -1,6 +1,7 @@
 require_relative '../models/hot_dog'
 require_relative '../helpers'
 require_relative '../models/options'
+require_relative '../models/user_input'
 
 class MenuController < Options
   attr_reader :hot_dog, :options
@@ -51,7 +52,7 @@ class MenuController < Options
     # Condiment options
     condiments_question = -> { puts "What kind of condiments would you like?" }
     print_options_menu(condiments_question, options.condiments)
-    
+
     until options.condiments.length < 2
       index = get_index(options.condiments)
       break if void?(index)
@@ -79,7 +80,7 @@ class MenuController < Options
   def print_question(question_lambda)
     puts
     question_lambda.call
-  
+
     puts Helpers::DIVIDER
   end
 
@@ -87,14 +88,14 @@ class MenuController < Options
     options.each_with_index do |option, index|
       puts "[ #{index} ] #{option}"
     end
-  
+
     print Helpers::PROMPT
   end
 
   # Move to UserInput class
 
   # Move to UserInput class
-  
+
   def get_index(options)
     begin
       index = Integer(gets.chomp)
@@ -103,11 +104,11 @@ class MenuController < Options
       get_index(options)
     end
   end
-  
+
   def void?(i)
     i.nil? || i.zero?
   end
-  
+
   def valid_index?(i, min, max)
     i.between?(min, max)
   end
@@ -128,12 +129,13 @@ class MenuController < Options
     when bun != nil then "a #{bun} bun"
     end
   end
-  
+
   def condiment_grammar_check(condiments)
     case
     when condiments.length == 1 then "with #{condiments[0]} "
     when condiments.length == 2 then "along with #{condiments.first} and #{condiments.last} "
     when condiments.length > 2 then "along with #{condiments[0..-2].join(", ")}, and #{condiments.last} "
+    else condiments
     end
   end
 end

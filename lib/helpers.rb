@@ -15,11 +15,15 @@ module Helpers
     else
       puts "Unknown error"
     end
-  
+
     print PROMPT
   end
 
   def self.clear
     system "clear"
+  end
+
+  def get_action
+    gets.chomp
   end
 end

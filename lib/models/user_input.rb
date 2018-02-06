@@ -3,7 +3,7 @@ require_relative '../helpers'
 class UserInput
   def self.get_index(options)
     begin
-      index = Integer(gets.chomp)
+      index = Helpers.get_action.to_i
     rescue ArgumentError, TypeError
       print_error(:type)
       self.get_index(options)
