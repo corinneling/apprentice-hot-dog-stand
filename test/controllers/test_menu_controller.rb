@@ -16,19 +16,19 @@ class TestedMenuController < MenuController
 end
 
 class MenuControllerTest < Minitest::Test
-  def test_canary
-    assert true
-  end
+  # def test_canary
+  #   assert true
+  # end
 
-  def test_menu_controller_can_be_created
-    MenuController.new
-  end
+  # def test_menu_controller_can_be_created
+  #   MenuController.new
+  # end
 
-  def test_can_quit_application
-    # Arrange
-    menu = TestedMenuController.new
-    # Act
-    result = menu.show_menu
-    # Assert
-  end
+  # def test_can_quit_application
+  #   # Arrange
+  #   menu = TestedMenuController.new
+  #   # Act
+  #   result = menu.show_menu
+  #   # Assert
+  # end
 end

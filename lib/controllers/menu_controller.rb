@@ -1,7 +1,7 @@
-require_relative '../models/hot_dog'
-require_relative '../helpers'
-require_relative '../models/options'
-require_relative '../models/user_input'
+require './lib/models/hot_dog'
+require './lib/helpers'
+require './lib/models/options'
+require './lib/models/user_input'
 
 class MenuController < Options
   attr_reader :hot_dog, :options
@@ -14,14 +14,10 @@ class MenuController < Options
   def show_menu
     menu_question = -> { puts "Would you like to order a hot dog today?" }
     print_options_menu(menu_question, options.menu)
-    input = get_index(options.menu)
 
-    until input.between?(0, options.menu.length - 1)
-      Helpers.print_error(:option)
-      input = get_index(options.menu)
-    end
+    input = UserInput.new(0, 1)
 
-    if input == 1
+    if input.value == 1
       create_hot_dog
       print_order
     else
