@@ -15,7 +15,7 @@ class MenuController < Options
     menu_question = -> { puts "Would you like to order a hot dog today?" }
     print_options_menu(menu_question, options.menu)
 
-    input = UserInput.new(0, 1)
+    input = UserInput.new(0, options.menu.length)
 
     if input.value == 1
       create_hot_dog
@@ -35,31 +35,29 @@ class MenuController < Options
     type_question = -> { puts "What kind of meat would you like?" }
     print_options_menu(type_question, options.meats)
 
-    index = get_index(options.meats)
-    hot_dog.meat = options.select_meat_at(index)
+    input = UserInput.new(0, options.meats.length)
+    hot_dog.meat = options.select_meat_at(input.value)
 
     # Bun options
     bun_question = -> { puts "What kind of bun would you like?" }
     print_options_menu(bun_question, options.buns)
 
-    index = get_index(options.buns)
-    hot_dog.bun = options.select_bun_at(index) unless void?(index)
+    input = UserInput.new(0, options.buns.length)
+    hot_dog.bun = options.select_bun_at(input.value) unless input.value.zero?
 
     # Condiment options
     condiments_question = -> { puts "What kind of condiments would you like?" }
     print_options_menu(condiments_question, options.condiments)
 
     until options.condiments.length < 2
-      index = get_index(options.condiments)
-      break if void?(index)
+      input = UserInput.new(0, options.condiments.length)
+      
+      break if input.value.zero?
 
-      if valid_index?(index, 1, options.condiments.length)
-        hot_dog.condiments << options.select_condiment_at(index)
-        Helpers.clear
-        print_options_menu(condiments_question, options.condiments)
-      else
-        Helpers.print_error(:option) &&  next
-      end
+      hot_dog.condiments << options.select_condiment_at(input.value)
+
+      Helpers.clear
+      print_options_menu(condiments_question, options.condiments)
     end
 
     hot_dog
@@ -86,27 +84,6 @@ class MenuController < Options
     end
 
     print Helpers::PROMPT
-  end
-
-  # Move to UserInput class
-
-  # Move to UserInput class
-
-  def get_index(options)
-    begin
-      index = Integer(gets.chomp)
-    rescue ArgumentError, TypeError
-      Helpers.print_error(:type)
-      get_index(options)
-    end
-  end
-
-  def void?(i)
-    i.nil? || i.zero?
-  end
-
-  def valid_index?(i, min, max)
-    i.between?(min, max)
   end
 
   # Move to Order class
