@@ -1,20 +1,24 @@
-require_relative '../helpers'
-
 class UserInput
-  def self.get_index(options)
-    begin
-      index = Helpers.get_action.to_i
-    rescue ArgumentError, TypeError
-      print_error(:type)
-      self.get_index(options)
-    end
+  attr_reader :input, :min, :max
+
+  def initialize(min, max)
+    @min = min
+    @max = max
+    @input = get_input
   end
 
-  def self.void?(i)
-    i.nil? || i.zero?
+  def valid?
+    return false unless integer?(input)
+    input.to_i.between?(min, max)
   end
 
-  def self.valid_index?(i, min, max)
-    i.between?(min, max)
+  private
+
+  def get_input
+    gets.chomp
+  end
+
+  def integer?(input)
+    input.match(/\d/)
   end
 end

@@ -1,36 +1,42 @@
 require 'minitest/autorun'
-require_relative './../models/user_input.rb'
-require_relative './../helpers.rb'
+require './lib/models/user_input'
+require 'stringio'
 
-class HotDogTest < Minitest::Test
+class TestUserInput < Minitest::Test
   def setup
-    @options = ["meat", "buns", "condiments"]
+    @stringio = StringIO.new
+    $stdin = @stringio
+  end
+  
+  def test_0_is_valid_menu_input
+    @stringio.puts "0"
+    @stringio.rewind
+    
+    result = UserInput.new(0, 1)
+    assert_equal true, result.valid?
+  end
+  
+  def test_1_is_valid_menu_input
+    @stringio.puts "1"
+    @stringio.rewind
+
+    result = UserInput.new(0, 1)
+    assert_equal true, result.valid?
   end
 
-  # get_index method tests
-  def test_get_index_with_number
-    def Helpers.get_action; 1 end
-    assert_equal(UserInput.get_index(@options), 1)
-  end
-  # void? method tests
-  def test_void_with_0_should_return_true
-    assert_equal(UserInput.void?(0), true)
+  def test_2_is_invalid_menu_input
+    @stringio.puts "2"
+    @stringio.rewind
+
+    result = UserInput.new(0, 1)
+    refute result.valid?
   end
 
-  def test_void_with_nil_should_return_true
-    assert_equal(UserInput.void?(nil), true)
-  end
+  def test_nil_is_invalid_menu_input
+    @stringio.puts nil
+    @stringio.rewind
 
-  def test_void_with_1_should_return_true
-    assert_equal(UserInput.void?(1), false)
-  end
-
-  # valid_index? tests
-  def test_valid_index
-    assert_equal(UserInput.valid_index?(1, 0, 3), true)
-  end
-
-  def test_valid_index_again
-    assert_equal(UserInput.valid_index?(4, 0, 3), false)
+    result = UserInput.new(0, 1)
+    refute result.valid?
   end
 end
