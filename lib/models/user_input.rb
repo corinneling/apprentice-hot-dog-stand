@@ -1,31 +1,26 @@
 require './lib/helpers'
 
 class UserInput
-  attr_reader :min, :max, :value
-
-  def initialize(min, max)
-    @min = min
+  def initialize(max)
     @max = max
-    @value = user_input
+  end
+
+  def get
+    validate(gets.chomp)
   end
 
   private
 
-  def user_input
-    value = gets.chomp
-    validate(value)
-  end
-
-  def validate(value)
-    if integer?(value) && value.to_i.between?(min, max)
-      return value.to_i
+  def validate(index)
+    if integer?(index) && index.to_i.between?(0, @max)
+      return index.to_i
     else
       Helpers.print_error(:option)
-      user_input
+      get
     end
   end
 
-  def integer?(value)
-    value.to_i.to_s == value
+  def integer?(index)
+    index.to_i.to_s == index
   end
 end

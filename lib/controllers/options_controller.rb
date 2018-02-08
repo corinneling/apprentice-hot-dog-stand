@@ -1,16 +1,16 @@
-class Options
-  attr_reader :options
-  
+require './user_input.rb'
+
+class OptionsNew
   def initialize
     @options = []
   end
 
   def prompt
-    puts "PROMPT: #{@options}"
+    puts "PROMPT: #{options}"
   end
 
   def show
-    puts "SHOW: #{@options}"
+    puts "SHOW: #{options}"
   end
 
   def select(input)
