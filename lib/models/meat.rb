@@ -6,5 +6,6 @@ class Meat < Options
   def initialize
     @option = 'meat'
     @options = ['polish', 'beef', 'jalepano', 'tofu', 'mystery meat']
+    @selection = nil
   end
 end

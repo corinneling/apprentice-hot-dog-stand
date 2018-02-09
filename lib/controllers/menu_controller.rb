@@ -9,7 +9,7 @@ class MenuController
     puts "#SHOW_MENU"
     puts
     @order.create
-    # @order.show
+    @order.show
   end
 
   # REFACTOR/MOVE CODE BELOW:
