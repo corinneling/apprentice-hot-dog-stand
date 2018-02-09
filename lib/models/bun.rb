@@ -6,5 +6,6 @@ class Bun < Options
   def initialize
     @option = 'bun'
     @options = ["whole wheat", "gluten-free", "tortilla"]
+    @selection = nil
   end
 end

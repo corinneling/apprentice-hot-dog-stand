@@ -1,8 +1,9 @@
 class Options
-  attr_reader :options
+  attr_reader :options, :selection
   
   def initialize
     @options = []
+    @selection = nil
   end
 
   def prompt
@@ -14,6 +15,6 @@ class Options
   end
 
   def select(input)
-    @options[input.get]
+    @selection = @options[input.get]
   end
 end

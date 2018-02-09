@@ -2,24 +2,20 @@ require './lib/models/options'
 
 class Condiments < Options
   def initialize
-    @options = ["ketchup", "mustard", "relish", "horseradish", "onions", "sauerkraut"]
+    @options = [nil, "ketchup", "mustard", "relish", "horseradish", "onions", "sauerkraut"]
     @option = "condiments"
-    @selections = []
+    @selection = []
   end
 
   def select(input)
-    until @options.length < 2
-      puts "CONDIMENTS: #{@options}"
-      puts "SELECTIONS: #{@selections}"
-
+    until @options.length == 1
+      self.show
       index = input.get
-      puts "INDEX: #{index}"
       break if index == 0
-      selection = @options
-      self.show # Options#show
-      @selections << @options.delete_at[index]
+      selected = @options.delete_at(index)
+      @selection << selected unless selected.nil?
     end
 
-    @selections
+    @selection
   end
 end
