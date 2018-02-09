@@ -6,35 +6,11 @@ class MenuController
   end
 
   def show_menu
-    puts "#SHOW_MENU"
-    puts
     @order.create
     @order.show
   end
 
   # REFACTOR/MOVE CODE BELOW:
-
-  # Create a Question class
-  # def print_options_menu(question_lambda, options)
-  #   print_question(question_lambda)
-  #   print_options(options)
-  # end
-
-  # def print_question(question_lambda)
-  #   puts
-  #   question_lambda.call
-
-  #   puts Helpers::DIVIDER
-  # end
-
-  # def print_options(options)
-  #   options.each_with_index do |option, index|
-  #     puts "[ #{index} ] #{option}"
-  #   end
-
-  #   print Helpers::PROMPT
-  # end
-
   # # Move to Order class
 
   # def print_order

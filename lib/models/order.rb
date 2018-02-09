@@ -15,13 +15,9 @@ class Order
   end
   
   def create
-    puts "#CREATE"
-    puts
-
     @ingredients.each do |key, ingredient|
-      ingredient.prompt
+      ingredient.prompt(key)
       ingredient.show
-      puts
 
       input = UserInput.new(ingredient.options.length)
       key = ingredient.select(input)
@@ -31,7 +27,6 @@ class Order
   end
 
   def show
-    puts "SHOW ORDER:"
     @ingredients.each do |key, ingredient|
       p ingredient.selection
       puts

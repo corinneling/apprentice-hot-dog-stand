@@ -13,7 +13,7 @@ class UserInput
 
   def validate(index)
     if integer?(index) && index.to_i.between?(0, @max)
-      return index.to_i
+      return index.to_i - 1
     else
       Helpers.print_error(:option)
       get

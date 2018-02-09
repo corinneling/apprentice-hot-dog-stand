@@ -1,3 +1,5 @@
+require './lib/helpers'
+
 class Options
   attr_reader :options, :selection
   
@@ -6,12 +8,17 @@ class Options
     @selection = nil
   end
 
-  def prompt
-    puts "PROMPT: #{@options}"
+  def prompt(ingredient)
+    puts "What kind of #{ingredient} would you like?"
+    puts Helpers::DIVIDER
   end
 
   def show
-    puts "SHOW: #{@options}"
+    @options.each_with_index do |option, index|
+      puts "[ #{index + 1} ] #{option}"
+    end
+
+    print Helpers::PROMPT
   end
 
   def select(input)
