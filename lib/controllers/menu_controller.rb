@@ -21,19 +21,19 @@ class MenuController
   #   puts Helpers::DIVIDER
   # end
 
-  # def bun_grammar_check(bun)
-  #   case
-  #   when bun == nil then "no bun"
-  #   when bun != nil then "a #{bun} bun"
-  #   end
-  # end
+  def self.bun_grammar_check(bun)
+    case
+    when bun == nil then "no bun"
+    when bun != nil then "a #{bun} bun"
+    end
+  end
 
-  # def condiment_grammar_check(condiments)
-  #   case
-  #   when condiments.length == 1 then "with #{condiments[0]} "
-  #   when condiments.length == 2 then "along with #{condiments.first} and #{condiments.last} "
-  #   when condiments.length > 2 then "along with #{condiments[0..-2].join(", ")}, and #{condiments.last} "
-  #   else condiments
-  #   end
-  # end
+  def self.condiment_grammar_check(condiments)
+    case
+    when condiments.length == 1 then "with #{condiments[0]} "
+    when condiments.length == 2 then "along with #{condiments.first} and #{condiments.last} "
+    when condiments.length > 2 then "along with #{condiments[0..-2].join(", ")}, and #{condiments.last} "
+    else "with no condiments"
+    end
+  end
 end

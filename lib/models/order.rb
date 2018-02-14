@@ -7,13 +7,13 @@ class Order
   attr_accessor :options
 
   def initialize
-    @ingredients = { 
-      meat: Meat.new, 
-      bun: Bun.new, 
+    @ingredients = {
+      meat: Meat.new,
+      bun: Bun.new,
       condiments: Condiments.new
     }
   end
-  
+
   def create
     @ingredients.each do |key, ingredient|
       ingredient.prompt(key)
@@ -27,9 +27,10 @@ class Order
   end
 
   def show
-    @ingredients.each do |key, ingredient|
-      p ingredient.selection
-      puts
-    end
+      p
+      p
+      p Helpers::DIVIDER
+      p "Your order of a #{@ingredients[:meat].selection} hot dog on #{@ingredients[:bun].selection} #{@ingredients[:condiments].selection}is coming up!"
+      p Helpers::DIVIDER
   end
 end

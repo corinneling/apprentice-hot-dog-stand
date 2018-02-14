@@ -8,4 +8,8 @@ class Meat < Options
     @options = ['polish', 'beef', 'jalepano', 'tofu', 'mystery meat']
     @selection = nil
   end
+
+  def sentence_fragment(meat)
+    @selection = meat
+  end
 end

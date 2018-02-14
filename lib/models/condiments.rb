@@ -18,7 +18,15 @@ class Condiments < Options
       selected = @options.delete_at(index)
       @selection << selected unless selected.nil?
     end
+    sentence_fragment(@selection)
+  end
 
-    @selection
+  def sentence_fragment(condiments)
+    case
+    when condiments.length == 1 then @selection = "with #{condiments[0]} "
+    when condiments.length == 2 then @selection = "along with #{condiments.first} and #{condiments.last} "
+    when condiments.length > 2 then @selection = "along with #{condiments[0..-2].join(", ")}, and #{condiments.last} "
+    else @selection = ""
+    end
   end
 end

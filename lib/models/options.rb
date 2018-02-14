@@ -2,7 +2,7 @@ require './lib/helpers'
 
 class Options
   attr_reader :options, :selection
-  
+
   def initialize
     @options = []
     @selection = nil
@@ -22,6 +22,6 @@ class Options
   end
 
   def select(input)
-    @selection = @options[input.get]
+    sentence_fragment(@options[input.get])
   end
 end
