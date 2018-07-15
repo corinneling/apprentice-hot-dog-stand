@@ -19,4 +19,4 @@ Write a program which presents a questionnaire to the user asking them the parti
 1. Add new task to Projects: Hot Diggity Dog
 1. Create or make edits on separate branch from master
 1. See [Git Flow](https://github.com/DevMaterial/my-life-on-weekdays/blob/master/cheatsheet.md)
-1. Ask another apprentice to review your code
+1. Ask another apprentice to review your code.
